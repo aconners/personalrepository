@@ -1,0 +1,34 @@
+# List of source files
+SRCS = assembler.c \
+       assembly_files/add.asm \
+       assembly_files/max.asm \
+       assembly_files/rect.asm \
+       assembly_files/Pong.asm \
+       assembly_files/PongL.asm
+
+# Generate object file names
+OBJS = $(SRCS:.c=.o)
+
+# Compiler
+CC = gcc
+
+# Compiler flags
+CFLAGS = -Wall -Wextra
+
+# Linker
+LD = gcc
+
+# Linker flags
+LDFLAGS =
+
+# Compilation rule
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Linking rule
+assembler: $(OBJS)
+	$(LD) $(LDFLAGS) $(OBJS) -o $@
+
+# Clean rule
+clean:
+	rm -f $(OBJS) assembler
